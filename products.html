@@ -1,0 +1,37 @@
+<!-- products.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="javascript/products.js"></script>
+
+
+    <div class="product" data-product-id="1" data-product-name="តុសម្អាង" data-product-price="75">
+       
+        <img src="path/to/product1.jpg" alt="Product 1 Image" class="img-responsive"> <h3>តុសម្អាង</h3>
+        <p>ខ្នាត: 800mm x 500mm x 1300mm</p>
+        <p>Price: $75</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product" data-product-id="2" data-product-name="Product Name 2" data-product-price="29.99">
+        <h3>Product Name 2</h3>
+        <p>Description of the product.</p>
+        <p>Price: $29.99</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div id="cart-summary">
+
+        <p>តម្លៃសរុប: $<span id="total-price">0.00</span></p>
+        <a id="go-to-cart" href="cart.html">Go to Cart</a>
+    </div>
+</body>
+</html>

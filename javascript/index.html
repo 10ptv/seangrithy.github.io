@@ -1,0 +1,50 @@
+<!-- HTML បង្កើតវិក័យបត្រ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- សូមប្រើទីតាំងរបស់អ្នកដើម្បីទិន្នន័យបន្តប្រើ -->
+    <script src="javascript/invoice.js"></script>
+
+    <header>
+        <h1>Your Company Name</h1>
+        <p>Address: Your Company Address</p>
+        <p>Email: yourcompany@example.com</p>
+    </header>
+    <main>
+        <h2>Invoice</h2>
+
+        <div id="invoice-details">
+            <!-- Display customer and invoice details here -->
+        </div>
+
+        <table id="invoice-items">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Display purchased items here -->
+            </tbody>
+        </table>
+
+        <div id="invoice-total">
+            <p>Total: $<span id="total-amount">0.00</span></p>
+        </div>
+    </main>
+    <footer>
+        <!-- Your footer content goes here -->
+    </footer>
+</body>
+</html>
