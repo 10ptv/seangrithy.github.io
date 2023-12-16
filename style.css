@@ -3,7 +3,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    background-image: url('img/2017.jpg'); /* Background image for the entire body */
+    background-color: color: #3f5d7a; /* Background image for the entire body */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed; /* Fixed background image */
@@ -23,7 +23,7 @@ body {
 
 /* Header styles */
 .header-container {
-    background-image: url('img/360_F_568631153_ygTLlsjLeVtMrGDSUbqia6VD2GsdbHJx.jpg'); /* Header image */
+    background-color:color(srgb rgb(121, 97, 97) rgb(38, 160, 38) rgb(198, 198, 219)) /* Header image */
     background-size: cover;
     background-repeat: no-repeat;
     padding: 3rem;
@@ -36,7 +36,7 @@ body {
 }
 
 .header-container h1 {
-    color: #0066cc; /* Dark blue header text color */
+    color: #3f5d7a; /* Dark blue header text color */
 }
 
 /* Blog section styles */
@@ -46,7 +46,7 @@ body {
 
 /* Footer styles */
 footer {
-    background-color: #28a745; /* Green background color */
+    background-color: #a72881; /* Green background color */
     color: #ffffff; /* White text color */
     padding: 1rem;
     text-align: center;
