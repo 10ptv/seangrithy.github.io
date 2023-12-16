@@ -9,13 +9,33 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
 </head>
 <body>
-   <!-- Order and payment completion form -->
-<div class="container mt-4">
-    <form id="checkout-form" class="col-12 col-md-8 mx-auto bg-light p-4 rounded">
+    <!-- Order and payment completion form -->
 
-        <h3 class="text-info bg-primary text-white p-2 rounded">Order Information</h3>
 
-        <div class="form-group text-primary bg-light p-3 rounded">
+
+       <!-- Order and payment completion form -->
+    <div class="container mt-4">
+        <form id="order-form" class="col-12 col-md-8 mx-auto bg-light p-4 rounded">
+
+            <!-- Your form content -->
+            <h3 class="text-info bg-primary text-white p-2 rounded">Order Information</h3>
+
+            <div class="form-group text-primary bg-light p-3 rounded">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <div class="form-group text-primary bg-light p-3 rounded">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="form-group text-primary bg-light p-3 rounded">
+                <label for="address">Address:</label>
+                <textarea class="form-control" id="address" name="address" required></textarea>
+            </div>
+
+            <!-- Additional form fi<div class="form-group text-primary bg-light p-3 rounded">
             <label for="name">Name:</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
@@ -60,15 +80,36 @@
                 <label for="cvv">CVV:</label>
                 <input type="text" class="form-control" id="cvv" name="cvv" placeholder="Enter CVV">
             </div>
-        </div>
 
-        <button type="submit" class="btn btn-primary btn-block mt-3">Checkout</button>
-    </form>
+            <!-- Change the type to submit -->
+            <button type="submit" class="btn btn-primary btn-block mt-3">Place Order</button>
+        </form>
+    </div>
 
-    <footer class="mt-4">
-        <a href="index.html" class="btn btn-secondary btn-block">Back</a>
-    </footer>
-</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="checkout.js"></script>
+    <!-- Include the JavaScript code directly in order.html -->
+<script>
+    // Your checkout.js code here
+    document.getElementById('order-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Get form data
+        var formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            address: document.getElementById('address').value,
+            // Add other form fields as needed
+        };
+
+        // Display order information in checkout.html
+        window.location.href = 'checkout.html?data=' + encodeURI(JSON.stringify(formData));
+    });
+    
+</script>
 
 </body>
 </html>

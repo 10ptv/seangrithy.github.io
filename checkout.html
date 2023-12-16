@@ -1,32 +1,67 @@
-<!-- checkout.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Invoice</title>
+    <!-- Add your styles and scripts as needed -->
 </head>
-<body>
-    <script src="javascript/checkout.js"></script>
+<body class="bg-light">
+    <div class="container mt-4">
+        <h3 class="text-info bg-primary text-white p-2 rounded">Invoice</h3>
 
-    <h2>Thank You for Your Purchase!</h2>
+        <!-- Invoice content -->
+        <div class="bg-light p-3 rounded" id="invoice-content">
+            <!-- Invoice details will be dynamically added here -->
+        </div>
 
-    <div id="invoice">
-        <!-- Invoice details will be dynamically added here -->
+        <footer class="mt-4">
+            <a href="index.html" class="btn btn-secondary btn-block">Back</a>
+        </footer>
     </div>
 
-    <p>Total Price: $<span id="total-price">0.00</span></p>
+    <script>
+        // Parse query parameters
+        var urlParams = new URLSearchParams(window.location.search);
+        var formData = JSON.parse(decodeURI(urlParams.get('data')));
 
-    <h3>Payment Information</h3>
-    <p>Payment Completed</p>
+        // Display order information in invoice.html
+        var invoiceContent = `
+            <p>Name: ${formData.name}</p>
+            <p>Email: ${formData.email}</p>
+            <p>Address: ${formData.address}</p>
+            <!-- Add other invoice details as needed -->
+            <p>Thank you for your order!</p>
+        `;
 
-    <h3>Products Purchased</h3>
-    <div id="purchased-products">
-        <!-- Product details will be dynamically added here -->
-    </div>
+        // Display order information in the invoice-content div
+        document.getElementById('invoice-content').innerHTML = invoiceContent;
 
+        // Save order information to note.txt
+        saveToNote();
+
+        function saveToNote() {
+            // Create a Blob containing the order information
+            var blob = new Blob([invoiceContent], { type: 'text/plain' });
+
+            // Create a download link
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+
+            // Set the filename for the download
+            link.download = 'note.txt';
+
+            // Append the link to the body and trigger a click to start the download
+            document.body.appendChild(link);
+            link.click();
+
+            // Remove the link from the body
+            document.body.removeChild(link);
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

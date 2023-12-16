@@ -1,65 +1,17 @@
 // checkout.js
 
-document.addEventListener('DOMContentLoaded', function () {
-    var invoiceElement = document.getElementById('invoice');
-    var totalPriceElement = document.getElementById('total-price');
-    var purchasedProductsElement = document.getElementById('purchased-products');
+// Function to generate the invoice
+function generateInvoice() {
+    // Assuming you have gathered necessary data in checkout.js
+    var invoiceData = {
+        totalPrice: 100.00, // Replace with the actual total price
+        items: [
+            { name: 'Product A', price: 50.00, quantity: 2 },
+            { name: 'Product B', price: 25.00, quantity: 1 }
+            // Add more items as needed
+        ]
+    };
 
-    // Retrieve order data from local storage
-    var orderData = JSON.parse(localStorage.getItem('orderData')) || {};
-    var cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Display invoice details
-    displayInvoice();
-
-    function displayInvoice() {
-        // Clear previous invoice details
-        invoiceElement.innerHTML = '';
-        purchasedProductsElement.innerHTML = '';
-
-        // Display order information
-        var orderDetails = document.createElement('div');
-        orderDetails.innerHTML = `
-            <h3>Order Information</h3>
-            <p>Name: ${orderData.name}</p>
-            <p>Email: ${orderData.email}</p>
-            <p>Address: ${orderData.address}</p>
-        `;
-        invoiceElement.appendChild(orderDetails);
-
-        // Display purchased products
-        var totalAmount = 0;
-        cart.forEach(function (item) {
-            var productItem = document.createElement('div');
-            productItem.innerHTML = `
-                <p>${item.productName} - Quantity: ${item.quantity}</p>
-                <p>Price: $${(item.productPrice * item.quantity).toFixed(2)}</p>
-            `;
-            purchasedProductsElement.appendChild(productItem);
-            totalAmount += item.productPrice * item.quantity;
-        });
-
-        // Display total price
-        totalPriceElement.innerText = totalAmount.toFixed(2);
-    }
-});
-function promptForNote() {
-    // Prompt the user for a note
-    const userNote = prompt("Please enter a note:");
-
-    // Check if the user entered a note
-    if (userNote !== null && userNote.trim() !== "") {
-        // Display the note or send it to the server for storage
-        alert("Note added: " + userNote);
-
-        // You can also consider sending the note to the server using AJAX or fetch
-        // Example: SendNoteToServer(userNote);
-    } else {
-        alert("No note added.");
-    }
+    // Redirect to invoice.html and pass invoice data
+    window.location.href = 'invoice.html?data=' + encodeURI(JSON.stringify(invoiceData));
 }
-
-// Function to send the note to the server (you can implement this based on your server setup)
-// function SendNoteToServer(note) {
-//     // Use AJAX or fetch to send the note to the server
-//     // Example: $.post("/api/saveNote", { note: note }, function(response) { console.log(response); });
