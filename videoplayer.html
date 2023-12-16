@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player with Manual Ads</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #video-container {
+            max-width: 800px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #controls {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        #controls:hover {
+            opacity: 1;
+        }
+
+        button {
+            background-color: transparent;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .ad-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            font-size: 24px;
+            z-index: 2;
+            display: none;
+        }
+
+        .skip-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="video-container">
+        <div class="ad-container" id="adContainer">
+            <video width="100%" height="auto" controls autoplay muted controlsList="nodownload">
+                <source src="media/xampp video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button class="skip-button" onclick="skipAd()">Skip Ad</button>
+        </div>
+        <video id="video-player" controls controlsList="nodownload">
+            <source src="media/10000000_3530673957201809_6505170249124543484_n.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="controls">
+            <button id="playPauseBtn">&#9658;</button>
+            <input type="range" id="seekBar" value="0">
+            <button id="muteBtn">&#128266;</button>
+            <input type="range" id="volumeBar" max="1" step="0.1" value="1">
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video-player');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const seekBar = document.getElementById('seekBar');
+        const muteBtn = document.getElementById('muteBtn');
+        const volumeBar = document.getElementById('volumeBar');
+        const adContainer = document.getElementById('adContainer');
+        const skipButton = document.querySelector('.skip-button');
+
+        let adContainerShown = false;
+
+        playPauseBtn.addEventListener('click', togglePlayPause);
+        seekBar.addEventListener('input', updateSeekBar);
+        muteBtn.addEventListener('click', toggleMute);
+        volumeBar.addEventListener('input', updateVolume);
+
+        video.addEventListener('timeupdate', checkAdTime);
+
+        function togglePlayPause() {
+            if (video.paused || video.ended) {
+                video.play();
+                playPauseBtn.innerHTML = '&#10074;&#10074;'; // pause symbol
+            } else {
+                video.pause();
+                playPauseBtn.innerHTML = '&#9658;'; // play symbol
+            }
+        }
+
+        function updateSeekBar() {
+            const newTime = video.duration * (seekBar.value / 100);
+            video.currentTime = newTime;
+        }
+
+        function toggleMute() {
+            video.muted = !video.muted;
+            muteBtn.innerHTML = video.muted ? '&#128263;' : '&#128266;'; // speaker or mute symbol
+        }
+
+        function updateVolume() {
+            video.volume = volumeBar.value;
+        }
+
+        function checkAdTime() {
+            // Show the ad container when the video reaches 5 seconds
+            if (video.currentTime >= 5 && !adContainerShown) {
+                adContainer.style.display = 'flex';
+                adContainerShown = true;
+                video.pause(); // Pause the main video during the ad
+                skipButton.style.display = 'block'; // Show the skip button
+            }
+
+            // Hide the ad container and show the main video when the ad ends
+            if (video.currentTime >= video.duration) {
+                adContainer.style.display = 'none';
+                video.play();
+            }
+        }
+
+        function skipAd() {
+            adContainer.style.display = 'none';
+            video.play(); // Resume the main video after skipping the ad
+        }
+    </script>
+
+</body>
+</html>
