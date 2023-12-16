@@ -25,7 +25,7 @@ body {
 .header-container {
     background-color:color(srgb rgb(121, 97, 97) rgb(38, 160, 38) rgb(198, 198, 219)) /* Header image */
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     padding: 3rem;
     text-align: center;
 }
@@ -46,8 +46,8 @@ body {
 
 /* Footer styles */
 footer {
-    background-color: #a72881; /* Green background color */
-    color: #ffffff; /* White text color */
+    background-color: #ebe4e8; /* Green background color */
+    color: #8d0d0d; /* White text color */
     padding: 1rem;
     text-align: center;
 }
