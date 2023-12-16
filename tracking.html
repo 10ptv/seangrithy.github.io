@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Page</title>
+    <!-- Add your CSS styles here -->
+    <style>
+        body {
+            background-color: #f8f9fa; /* Use a light background color */
+        }
+
+        .container {
+            margin-top: 4rem;
+        }
+
+        h3 {
+            color: #17a2b8; /* Text color for the h3 element */
+            background-color: #007bff; /* Background color for the h3 element */
+            padding: 0.5rem 1rem;
+            border-radius: 0.3rem;
+        }
+
+        #tracking-content {
+            background-color: #f8f9fa; /* Background color for the tracking content */
+            padding: 1rem;
+            border-radius: 0.3rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Background color for secondary button */
+            color: #ffffff; /* Text color for secondary button */
+        }
+
+        #map {
+            height: 300px; /* Set the height of the map */
+            border-radius: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h3 class="text-info bg-primary text-white p-2 rounded">Tracking Information</h3>
+
+        <!-- Tracking content -->
+        <div class="bg-light p-3 rounded" id="tracking-content">
+            <!-- Tracking details will be dynamically added here -->
+        </div>
+
+        <!-- Tracking map -->
+        <div id="map"></div>
+
+        <footer class="mt-4">
+            <a href="index.html" class="btn btn-secondary btn-block">Back to Home</a>
+        </footer>
+    </div>
+
+    <script>
+        // Parse query parameters to get data from order.html
+        var urlParams = new URLSearchParams(window.location.search);
+        var formData = JSON.parse(decodeURI(urlParams.get('data')));
+
+        // Generate tracking content based on the form data
+        var trackingContent = `
+            <p><strong>Order ID:</strong> ${generateOrderID()}</p>
+            <p><strong>Estimated Delivery Date:</strong> ${generateEstimatedDeliveryDate()}</p>
+            <!-- Add other tracking details as needed -->
+        `;
+
+        // Display the generated content in the tracking-content div
+        document.getElementById('tracking-content').innerHTML = trackingContent;
+
+        // Function to generate a unique order ID (you can implement your logic)
+        function generateOrderID() {
+            // Implement your logic to generate a unique order ID
+            return 'ORD123456';
+        }
+
+        // Function to generate an estimated delivery date (you can implement your logic)
+        function generateEstimatedDeliveryDate() {
+            // Implement your logic to generate an estimated delivery date
+            return 'December 25, 2023';
+        }
+    </script>
+
+    <!-- Google Maps API script -->
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+
+    <!-- External JavaScript file (e.g., script.js) -->
+    <script src="script.js"></script>
+
+    <!-- ... (Bootstrap scripts) ... -->
+
+    <script>
+        // Function to initialize the map
+        function initMap() {
+            // Replace with the coordinates of your desired location
+            var myLatLng = { lat: 37.7749, lng: -122.4194 };
+
+            // Create a map centered at the specified coordinates
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: myLatLng
+            });
+
+            // Create a marker at the specified coordinates
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Delivery Location'
+            });
+        }
+    </script>
+</body>
+</html>

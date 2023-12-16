@@ -52,4 +52,19 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'checkout.html';
     });
 });
+// Assuming you have some logic in cart.js to handle cart data
+// For example, storing the selected item in local storage
+function addToCart(item) {
+    localStorage.setItem('selectedItem', JSON.stringify(item));
+}
+
+// Triggered when the user adds an item to the cart
+// You might call this function when the user interacts with your cart interface
+var selectedItem = {
+    name: 'Product A',
+    price: 19.99,
+    quantity: 2
+};
+
+addToCart(selectedItem);
 
