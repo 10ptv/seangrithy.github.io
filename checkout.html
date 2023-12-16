@@ -37,10 +37,10 @@
         // Display order information in the invoice-content div
         document.getElementById('invoice-content').innerHTML = invoiceContent;
 
-        // Save order information to note.txt
-        saveToNote();
+        // Save order information to the JavaScript folder
+        saveToFolder();
 
-        function saveToNote() {
+        function saveToFolder() {
             // Create a Blob containing the order information
             var blob = new Blob([invoiceContent], { type: 'text/plain' });
 
@@ -48,8 +48,8 @@
             var link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
 
-            // Set the filename for the download
-            link.download = 'note.txt';
+            // Set the filename and directory for the download
+            link.download = 'javascript/note.txt';
 
             // Append the link to the body and trigger a click to start the download
             document.body.appendChild(link);
