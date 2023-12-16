@@ -47,3 +47,11 @@ document.addEventListener('DOMContentLoaded', function () {
         totalPriceElement.innerText = totalPrice.toFixed(2);
     }
 });
+// script.js
+
+// Function to Go to Home (Redirect to index.html)
+function goToHome() {
+    window.location.href = 'index.html';
+}
+
+// Your other JavaScript logic goes here

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+</head>
+<body>
+   <!-- Order and payment completion form -->
+<div class="container mt-4">
+    <form id="checkout-form" class="col-12 col-md-8 mx-auto bg-light p-4 rounded">
+
+        <h3 class="text-info bg-primary text-white p-2 rounded">Order Information</h3>
+
+        <div class="form-group text-primary bg-light p-3 rounded">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <div class="form-group text-primary bg-light p-3 rounded">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+
+        <div class="form-group text-primary bg-light p-3 rounded">
+            <label for="address">Address:</label>
+            <textarea class="form-control" id="address" name="address" required></textarea>
+        </div>
+
+        <h3 class="text-info">Payment Information</h3>
+
+        <!-- Bank details -->
+        <div id="bank-details" class="payment-details bg-light p-3 rounded">
+            <p class="text-primary">Bank Information:</p>
+            <ul>
+                <li>ABA: 092200060</li>
+                <li>Wing: 092200060</li>
+                <li>Crypto: null</li>
+                <li>PayPal: null</li>
+                <li>MasterCard/Visa Card: Complete the required information</li>
+            </ul>
+        </div>
+
+        <!-- Additional fields for MasterCard/Visa Card -->
+        <div id="card-details" class="payment-details bg-light p-3 rounded">
+            <div class="form-group text-primary">
+                <label for="card-number">Card Number:</label>
+                <input type="text" class="form-control" id="card-number" name="card-number" placeholder="Enter your card number">
+            </div>
+
+            <div class="form-group text-primary">
+                <label for="expiration-date">Expiration Date:</label>
+                <input type="text" class="form-control" id="expiration-date" name="expiration-date" placeholder="MM/YY">
+            </div>
+
+            <div class="form-group text-primary">
+                <label for="cvv">CVV:</label>
+                <input type="text" class="form-control" id="cvv" name="cvv" placeholder="Enter CVV">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mt-3">Checkout</button>
+    </form>
+
+    <footer class="mt-4">
+        <a href="index.html" class="btn btn-secondary btn-block">Back</a>
+    </footer>
+</div>
+
+</body>
+</html>

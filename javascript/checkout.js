@@ -43,3 +43,23 @@ document.addEventListener('DOMContentLoaded', function () {
         totalPriceElement.innerText = totalAmount.toFixed(2);
     }
 });
+function promptForNote() {
+    // Prompt the user for a note
+    const userNote = prompt("Please enter a note:");
+
+    // Check if the user entered a note
+    if (userNote !== null && userNote.trim() !== "") {
+        // Display the note or send it to the server for storage
+        alert("Note added: " + userNote);
+
+        // You can also consider sending the note to the server using AJAX or fetch
+        // Example: SendNoteToServer(userNote);
+    } else {
+        alert("No note added.");
+    }
+}
+
+// Function to send the note to the server (you can implement this based on your server setup)
+// function SendNoteToServer(note) {
+//     // Use AJAX or fetch to send the note to the server
+//     // Example: $.post("/api/saveNote", { note: note }, function(response) { console.log(response); });

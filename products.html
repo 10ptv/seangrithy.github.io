@@ -1,37 +1,122 @@
-<!-- products.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Your Bootstrap Website</title>
+    <!-- Bootstrap CSS Link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <script src="javascript/products.js"></script>
+
+    <!-- Navigation Bar with Cart Info -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <h1><a class="navbar-brand" href="index.html">SEANGRITHY </a></h1>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <!-- Cart Info in the Navbar -->
+                <li class="nav-item">
+                    <a class="nav-link" href="cart.html">
+                        <img src="cart-icon.png" alt="Cart" width="24" height="24">
+                        <span id="cart-notification">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content Container -->
+    <div class="container mt-4">
+        <h1 class="text-center">Welcome to Your Website feel free to shop in our store</h1>
+
+        <!-- Centered Order Form with Product Image at the Top -->
+        <div class="mx-auto text-center">
+            <!-- Product Image at the Top -->
+            
+
+            <!-- Product Details (Name, Price, Info) -->
+            <script src="javascript/products.js"></script>
+            
+                
+
+            <!-- Form for Add to Cart -->
+            <form id="addToCartForm">
+                <div class="form-group">
+                    <div class="product" data-product-id="1" data-product-name="តុសម្អាង" data-product-price="75">
+               
+                        <img src="productsImage/Grand_Theft_Auto_V.png" alt="Product 1 Image" class="img-responsive"> 
+                        <h3>តុសម្អាង</h3>
+                        <p>ខ្នាត: 800mm x 500mm x 1300mm</p>
+                        <p>Price: $75</p>
+                        <button class="add-to-cart">Add to Cart</button>   
+                        <button class="btn btn-danger" onclick="removeItem('Product 1')">Remove Item</button>
+                </div>
+            
+                <div id="cart-summary">
+
+                    <p>តម្លៃសរុប: $<span id="total-price">0.00</span></p>
+                    
+                    
+                    </button>
+                </div>
+
+            </form>
+            <a href="cart.html" class="btn btn-success">Go to Cart</a>
+                    
+        </button>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center p-3 mt-4">
+        
+        <p>&copy; 2023 Your Website. All rights reserved.</p>
+        <li class="nav-item">
+            <a class="nav-link" href="#" onclick="goToHome()">Go to Home</a>
+        </li>
+
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js scripts (required for Bootstrap functionality) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Your Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Handle Add to Cart Form Submission
+            document.getElementById('addToCartForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent form submission
+
+                // Perform the logic to update the cart and notification
+                // For demonstration purposes, let's increment the cart count by 1
+
+                // Get the current cart count
+                var currentCartCount = parseInt(document.getElementById('cart-notification').innerText);
+
+                // Increment the cart count
+                var newCartCount = currentCartCount + 1;
+
+                // Update the cart count in the navbar
+                document.getElementById('cart-notification').innerText = newCartCount;
+
+                // You can perform additional logic here, such as updating the total price, etc.
+            });
+        });
+    </script>
+   
 
 
-    <div class="product" data-product-id="1" data-product-name="តុសម្អាង" data-product-price="75">
-       
-        <img src="path/to/product1.jpg" alt="Product 1 Image" class="img-responsive"> <h3>តុសម្អាង</h3>
-        <p>ខ្នាត: 800mm x 500mm x 1300mm</p>
-        <p>Price: $75</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
+<script>
+    // Function to Remove Item
+    function removeItem(productName) {
+        // Implement your logic to remove the item from the cart or update UI
+        alert('Removing ' - productName);
+    }
 
-    <div class="product" data-product-id="2" data-product-name="Product Name 2" data-product-price="29.99">
-        <h3>Product Name 2</h3>
-        <p>Description of the product.</p>
-        <p>Price: $29.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-
-    <div id="cart-summary">
-
-        <p>តម្លៃសរុប: $<span id="total-price">0.00</span></p>
-        <a id="go-to-cart" href="cart.html">Go to Cart</a>
-    </div>
+    // Your other JavaScript logic goes here
+</script>
 </body>
 </html>
