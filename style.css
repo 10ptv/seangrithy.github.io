@@ -1,79 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Bootstrap Website</title>
-    <!-- Bootstrap CSS Link -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Add your custom styles here -->
-    <style>
-        /* Set a background color for the pages */
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Roboto', sans-serif; /* Use Google Fonts - Roboto */
-        }
+/* style.css */
 
-        /* Center the text on the pages */
-        h1, h2, h3, h4, h5, h6, p, span, div {
-            text-align: center;
-        }
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-image: url('img/2017.jpg'); /* Background image for the entire body */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Fixed background image */
+}
+/* style.css */
 
-        /* Style for the checkout container */
-        .checkout-container {
-            margin: 20px;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #1a71c9;
-            border-radius: 5px;
-        }
+/* Adjust the max-height value as needed */
+.slide-image {
+    max-height: 100px; /* Set the maximum height for carousel images */
+}
 
-        /* Style for the product list in the checkout */
-        .product-list {
-            margin-bottom: 20px;
-        }
 
-        /* Style for product names in the checkout */
-        .product-name {
-            font-size: 16px;
-            font-weight: bold;
-        }
+.container {
+    margin-top: 2rem;
+    padding: 1rem;
+}
 
-        /* Style for product prices in the checkout */
-        .product-price {
-            font-size: 16px;
-            color: #007bff;
-        }
+/* Header styles */
+.header-container {
+    background-image: url('img/360_F_568631153_ygTLlsjLeVtMrGDSUbqia6VD2GsdbHJx.jpg'); /* Header image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 3rem;
+    text-align: center;
+}
 
-        /* Style for the columns in the product list */
-        .product-column {
-            display: flex;
-            justify-content: space-between;
-        }
+.header-container img {
+    max-width: 150px;
+    height: auto;
+}
 
-        /* Style for the total price in the checkout */
-        .total-price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #e71a70;
-        }
+.header-container h1 {
+    color: #0066cc; /* Dark blue header text color */
+}
 
-        /* Responsive styles */
-        @media (max-width: 576px) {
-            /* Adjust styles for smaller screens if needed */
-            .checkout-container {
-                margin: 10px;
-                padding: 10px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Your HTML content goes here -->
+/* Blog section styles */
+#blog {
+    margin-top: 2rem;
+}
 
-    <!-- Bootstrap JS and Popper.js scripts (required for Bootstrap functionality) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+/* Footer styles */
+footer {
+    background-color: #28a745; /* Green background color */
+    color: #ffffff; /* White text color */
+    padding: 1rem;
+    text-align: center;
+}

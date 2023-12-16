@@ -8,10 +8,20 @@
     <style>
         body {
             background-color: #f8f9fa; /* Use a light background color */
+            margin: 0; /* Remove default body margin */
+            font-family: 'Arial', sans-serif; /* Set a default font family */
+        }
+
+        header {
+            background-color: #343a40; /* Header background color */
+            color: #ffffff; /* Header text color */
+            padding: 1rem; /* Header padding */
+            text-align: center; /* Center align text */
         }
 
         .container {
-            margin-top: 4rem;
+            margin-top: 2rem;
+            padding: 1rem; /* Add some padding to the container */
         }
 
         h3 {
@@ -27,23 +37,33 @@
             border-radius: 0.3rem;
         }
 
+        #map {
+            height: 300px; /* Set the height of the map */
+            border-radius: 0.3rem;
+        }
+
         footer {
-            margin-top: 4rem;
+            background-color: #343a40; /* Footer background color */
+            color: #ffffff; /* Footer text color */
+            padding: 1rem; /* Footer padding */
+            text-align: center; /* Center align text */
+            position: fixed; /* Fixed position at the bottom */
+            width: 100%; /* Full width */
+            bottom: 0; /* Stick to the bottom */
         }
 
         .btn-secondary {
             background-color: #6c757d; /* Background color for secondary button */
             color: #ffffff; /* Text color for secondary button */
         }
-
-        #map {
-            height: 300px; /* Set the height of the map */
-            border-radius: 0.3rem;
-        }
     </style>
 </head>
 <body>
-    <div class="container mt-4">
+    <header>
+        <h1>Order Tracking System</h1>
+    </header>
+
+    <div class="container">
         <h3 class="text-info bg-primary text-white p-2 rounded">Tracking Information</h3>
 
         <!-- Tracking content -->
@@ -54,38 +74,13 @@
         <!-- Tracking map -->
         <div id="map"></div>
 
-        <footer class="mt-4">
-            <a href="index.html" class="btn btn-secondary btn-block">Back to Home</a>
-        </footer>
+        <!-- Button to update map location -->
+        <button id="updateMapBtn" class="btn btn-secondary btn-block mt-4">Update Map Location</button>
     </div>
 
-    <script>
-        // Parse query parameters to get data from order.html
-        var urlParams = new URLSearchParams(window.location.search);
-        var formData = JSON.parse(decodeURI(urlParams.get('data')));
-
-        // Generate tracking content based on the form data
-        var trackingContent = `
-            <p><strong>Order ID:</strong> ${generateOrderID()}</p>
-            <p><strong>Estimated Delivery Date:</strong> ${generateEstimatedDeliveryDate()}</p>
-            <!-- Add other tracking details as needed -->
-        `;
-
-        // Display the generated content in the tracking-content div
-        document.getElementById('tracking-content').innerHTML = trackingContent;
-
-        // Function to generate a unique order ID (you can implement your logic)
-        function generateOrderID() {
-            // Implement your logic to generate a unique order ID
-            return 'ORD123456';
-        }
-
-        // Function to generate an estimated delivery date (you can implement your logic)
-        function generateEstimatedDeliveryDate() {
-            // Implement your logic to generate an estimated delivery date
-            return 'December 25, 2023';
-        }
-    </script>
+    <footer>
+        <p>&copy; 2023 Order Tracking System</p>
+    </footer>
 
     <!-- Google Maps API script -->
     <script async defer
@@ -101,21 +96,42 @@
         // Function to initialize the map
         function initMap() {
             // Replace with the coordinates of your desired location
-            var myLatLng = { lat: 37.7749, lng: -122.4194 };
+            var initialLatLng = { lat: 37.7749, lng: -122.4194 };
 
             // Create a map centered at the specified coordinates
-            var map = new google.maps.Map(document.getElementById('map'), {
+            map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 10,
-                center: myLatLng
+                center: initialLatLng
             });
 
             // Create a marker at the specified coordinates
             var marker = new google.maps.Marker({
-                position: myLatLng,
+                position: initialLatLng,
                 map: map,
                 title: 'Delivery Location'
             });
         }
+
+        // Function to update the map location
+        function updateMapLocation() {
+            // Prompt the owner for new coordinates
+            var newLat = parseFloat(prompt('Enter new latitude:'));
+            var newLng = parseFloat(prompt('Enter new longitude:'));
+
+            // Validate the input
+            if (!isNaN(newLat) && !isNaN(newLng)) {
+                // Update the map and marker
+                var newLatLng = { lat: newLat, lng: newLng };
+                map.setCenter(newLatLng);
+                map.panTo(newLatLng);
+                marker.setPosition(newLatLng);
+            } else {
+                alert('Invalid coordinates. Please enter numeric values.');
+            }
+        }
+
+        // Attach click event listener to the updateMapBtn
+        document.getElementById('updateMapBtn').addEventListener('click', updateMapLocation);
     </script>
 </body>
 </html>
