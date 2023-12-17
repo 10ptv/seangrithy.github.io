@@ -1,0 +1,51 @@
+<!-- invoice.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+</head>
+<body>
+    <h2>Invoice</h2>
+
+    <div id="customerDetails">
+        <!-- Customer information will be displayed here -->
+    </div>
+
+    <div id="invoiceDetails">
+        <!-- Invoice details will be displayed here -->
+    </div>
+
+    <div id="thankYouMessage">
+        <!-- Thank you message will be displayed here -->
+    </div>
+
+    <button onclick="downloadInvoice()">Download Invoice</button>
+
+    <script src="invoice.js"></script>
+    <script src="path/to/html2pdf.bundle.js"></script>
+    <div id="invoiceContainer">
+        <!-- Your invoice content goes here -->
+      </div>
+      <button onclick="generatePDF()">Download PDF</button>
+      <script>
+        function generatePDF() {
+          // Get the HTML content of the invoice container
+          const invoiceContainer = document.getElementById('invoiceContainer');
+          const invoiceHTML = invoiceContainer.innerHTML;
+    
+          // Create a PDF from the HTML content
+          html2pdf(invoiceHTML, {
+            margin: 10,
+            filename: 'invoice.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+          });
+        }
+      </script>
+      <script src="path/to/html2pdf.bundle.js"></script>
+    </body>
+    </html>
