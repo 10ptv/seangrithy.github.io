@@ -33,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->fetch()) {
         // Verify the entered password against the stored hashed password
         if (password_verify($input_password, $stored_password)) {
-            // Successful login, redirect to purchase.html
-            header("Location: purchase.html");
+            // Successful login, redirect to cart.html
+            header("Location: cart.html");
             exit();
         } else {
             echo "Invalid password. Please try again.";
