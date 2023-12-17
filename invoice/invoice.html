@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Form</title>
+    <link rel="stylesheet" href="invoice-style.css">
+</head>
+<body>
+
+    <div class="invoice-form">
+        <h1>Invoice</h1>
+
+        <!-- Customer Information -->
+        <!-- Customer Information -->
+<div class="customer-info">
+  <label for="customerName">Customer Name:</label>
+  <input type="text" id="customerName" name="customerName" placeholder="Enter customer name">
+
+  <label for="customerEmail">Customer Email:</label>
+  <input type="email" id="customerEmail" name="customerEmail" placeholder="Enter customer email">
+
+  <label for="customerPhone">Customer Phone:</label>
+  <input type="tel" id="customerPhone" name="customerPhone" placeholder="Enter customer phone number">
+
+  <label for="customerAddressCountry">Country:</label>
+  <select id="customerAddressCountry">
+      <option value="country1">Country 1</option>
+      <option value="country2">Country 2</option>
+      <!-- Add more countries as needed -->
+  </select>
+
+  <label for="customerAddressProvince">Province/City:</label>
+  <select id="customerAddressProvince">
+      <option value="province1">Province/City 1</option>
+      <option value="province2">Province/City 2</option>
+      <!-- Add more provinces/cities as needed -->
+  </select>
+
+  <label for="customerAddressCommune">Commune:</label>
+  <select id="customerAddressCommune">
+      <option value="commune1">Commune 1</option>
+      <option value="commune2">Commune 2</option>
+      <!-- Add more communes as needed -->
+  </select>
+
+  <label for="customerAddressDistrict">District:</label>
+  <select id="customerAddressDistrict">
+      <option value="district1">District 1</option>
+      <option value="district2">District 2</option>
+      <!-- Add more districts as needed -->
+  </select>
+
+  <label for="customerAddressHomeNumber">Home Number:</label>
+  <input type="text" id="customerAddressHomeNumber" name="customerAddressHomeNumber" placeholder="Enter home number">
+</div>
+
+
+        <div class="item-details">
+          <h2>Item Details</h2>
+
+          <label for="itemSelect">Choose Item:</label>
+          <select id="itemSelect">
+              <option value="item1">Item 1</option>
+              <option value="item2">Item 2</option>
+              <option value="item3">Item 3</option>
+              <!-- Add more items as needed -->
+          </select>
+
+          <label for="itemQuantity">Quantity:</label>
+          <input type="number" id="itemQuantity" name="itemQuantity" placeholder="Enter quantity" min="1">
+
+          <label for="itemPrice">Price per Unit (auto-filled):</label>
+          <input type="text" id="itemPrice" name="itemPrice" readonly>
+
+          <!-- Hidden input for storing item prices -->
+          <input type="hidden" id="itemPrices" value='{"item1": 10.00, "item2": 20.00, "item3": 30.00}'>
+      </div>
+
+      <!-- Total Amount -->
+      <div class="total-amount">
+          <h2>Total Amount</h2>
+          <p id="totalAmount">$0.00</p>
+      </div>
+
+      <!-- "Add to Cart" Button -->
+      <button id="addToCart">Add to Cart</button>
+
+      <!-- Cart Summary -->
+      <div class="cart-summary">
+          <h2>Cart Summary</h2>
+          <ul id="cartItems"></ul>
+      </div>
+
+      <!-- "Generate" Button -->
+      <button id="generateInvoice">Generate Invoice</button>
+  </div>
+
+  <script src="invoice.js"></script>
+</body>
+</html>
