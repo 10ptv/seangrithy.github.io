@@ -6,6 +6,76 @@
     <title>My Online Shop</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-fhf9zINHya0eLWAdTEAw9t6O4x+ra1FzlY0By8VC4J4Qqi4PcLFN8DT25VUrT6e4Fs2qtD2+EWLZRi18BbcpJ6A==" crossorigin="anonymous" />
+ 
+    <style>
+        body {
+          font-family: 'Arial', sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f8f8f8;
+        }
+    
+        header {
+          background-color: #333;
+          color: #fff;
+          padding: 10px;
+          text-align: center;
+        }
+    
+        main {
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+          padding: 20px;
+        }
+    
+        .product, .cart-item {
+          background-color: #fff;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          margin: 10px;
+          padding: 20px;
+          text-align: center;
+          border-radius: 8px;
+        }
+    
+        .price {
+          font-weight: bold;
+          color: #007bff;
+        }
+    
+        .add-to-cart, .remove-from-cart {
+          background-color: #007bff;
+          color: #fff;
+          padding: 8px 16px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+    
+        .add-to-cart:hover, .remove-from-cart:hover {
+          background-color: #0056b3;
+        }
+    
+        .cart {
+          background-color: #fff;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+          border-radius: 8px;
+        }
+    
+        .cart-total {
+          margin-top: 20px;
+          text-align: right;
+        }
+    
+        footer {
+          background-color: #333;
+          color: #fff;
+          padding: 10px;
+          text-align: center;
+        }
+      </style>
 </head>
 <body>
 
@@ -16,30 +86,31 @@
 </div>
 
 <div class="product" id="product1">
-    <h2>Product 1</h2>
-    <img src="productsimage/" alt="Product 1 Image">
-    <p>Description: This is a brief description of Product 1.</p>
-    <p>Price: $19.99</p>
-    <button onclick="addToCart('Product 1', 19.99, 'This is a brief description of Product 1.')">Add to Cart</button>
+    <h2>King size Bed</h2>
+    <img src="productsImage/bed bass ROOM.png" alt="Product 1 Image">
+    <p>ខ្នាត : 2m x 1.8m</p>
+    <p>Price: $350</p>
+    <button onclick="addToCart('Product 1', 355.99, 'This is a brief description of Product 1.')">Add to Cart</button>
 </div>
 
 <div class="product" id="product2">
-    <h2>Product 2</h2>
-    <img src="product2-image.jpg" alt="Product 2 Image">
-    <p>Description: This is a brief description of Product 2.</p>
-    <p>Price: $29.99</p>
-    <button onclick="addToCart('Product 2', 29.99, 'This is a brief description of Product 2.')">Add to Cart</button>
+    <h2>Gamming Desk</h2>
+    <img src="productsImage/gaming desk.png" alt="Product 2 Image">
+    <p>ខ្នាត 1.5m x 0.6m x 1.5m </p>
+    <p>Price: $200</p>
+    <button onclick="addToCart('Product 2', 215.99, 'This is a brief description of Product 2.')">Add to Cart</button>
 </div>
 
 <div class="product" id="product3">
-    <h2>Product 3</h2>
-    <img src="product3-image.jpg" alt="Product 3 Image">
-    <p>Description: This is a brief description of Product 3.</p>
-    <p>Price: $39.99</p>
-    <button onclick="addToCart('Product 3', 39.99, 'This is a brief description of Product 3.')">Add to Cart</button>
+    <h2>Desk for pc</h2>
+    <img src="productsImage/pc table1.png" alt="Product 3 Image">
+    <p>ខ្នាត 1.2m x 0.6m x 1.5m</p>
+    <p>Price: $155.99</p>
+    <button onclick="addToCart('Product 3', 155.99, 'This is a brief description of Product 3.')">Add to Cart</button>
 </div>
 
 <script src="shop.js"></script>
 
 </body>
+<footer><i class="fas fa-copyright    ">Copyright @ <i class="fa fa-calendar" aria-hidden="true"></i></i></footer>
 </html>
