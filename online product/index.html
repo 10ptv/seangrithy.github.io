@@ -4,69 +4,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Online Shop</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Shopping Cart</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-fhf9zINHya0eLWAdTEAw9t6O4x+ra1FzlY0By8VC4J4Qqi4PcLFN8DT25VUrT6e4Fs2qtD2+EWLZRi18BbcpJ6A=="
         crossorigin="anonymous">
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-T9a3Pr6uCuLZuVX02aSMWSbQJqAJlb3g/xP4COH/a9hqDBZ6XbvoB7Yyz5q3gc4Q" crossorigin="anonymous">
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
             margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
+            padding-top: 56px; /* Adjust based on your header height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #007bff; /* Blue color for letters */
         }
 
-        header {
-            background-color: #333;
+        #cartContainer {
+            background-color: #007bff;
             color: #fff;
             padding: 10px;
+            margin-bottom: 20px;
+            width: 100%;
             text-align: center;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
 
-        main {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            padding: 20px;
+        #cartIcon {
+            text-decoration: none;
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 10px;
         }
 
-        .product,
-        .cart-item {
+        #cartCount {
+            background-color: yellow; /* Yellow background for the number */
+            color: red; /* Red color for the number */
+            border-radius: 50%;
+            padding: 4px 8px;
+            margin-left: 5px;
+        }
+
+        #goToShopButton {
             background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            text-decoration: none;
+        }
+
+        #goToShopButton:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .col-md-4 {
+            flex: 0 0 calc(33.3333% - 20px);
             margin: 10px;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-            transition: transform 0.2s;
+            box-sizing: border-box;
         }
 
-        .product:hover,
-        .cart-item:hover {
-            transform: scale(1.05);
+        .card {
+            background-color: #fff;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
 
-        .product img,
-        .cart-item img {
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        .card img {
             max-width: 100%;
-            max-height: 200px;
-            width: auto;
-            border-radius: 8px;
-            object-fit: contain;
+            height: auto;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: #555;
         }
 
         .price {
             font-weight: bold;
             color: #007bff;
             margin-bottom: 10px;
+            display: block;
         }
 
-        .add-to-cart,
-        .remove-from-cart {
+        .add-to-cart {
             background-color: #007bff;
             color: #fff;
             padding: 8px 16px;
@@ -74,39 +135,12 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
+            display: block;
+            margin-top: 10px;
         }
 
-        .add-to-cart:hover,
-        .remove-from-cart:hover {
+        .add-to-cart:hover {
             background-color: #0056b3;
-        }
-
-        .card-body {
-            padding: 0;
-        }
-
-        .card-title {
-            margin-bottom: 15px;
-        }
-
-        .card-text {
-            color: #555;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-
-        /* Custom class for bigger button */
-        .btn-bigger {
-            padding: 12px 24px;
-            font-size: 18px;
         }
 
         .footer {
@@ -114,24 +148,23 @@
             color: #fff;
             padding: 10px;
             text-align: center;
-            position: fixed;
-            bottom: 0;
             width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container mt-3 d-flex justify-content-center">
-        <!-- Center the content -->
-        <div id="cartContainer" class="d-flex justify-content-between align-items-center mb-3">
-            <a href="cart.html" id="cartIcon"><i class="fas fa-shopping-cart"></i></a>
-            <div id="cartCount" class="badge badge-primary">0</div>
-            <!-- Apply the custom class to the button -->
-            <button id="goToCartButton" onclick="goToCart()" class="btn btn-primary btn-bigger">Go to Cart</button>
-        </div>
+    <div id="cartContainer">
+        <a href="cart.html" id="cartIcon"><i class="fas fa-shopping-cart"></i></a>
+        <div id="cartCount" class="badge badge-primary">0</div>
+        <a href="#" id="goToShopButton" onclick="goToCart()">Go to Cart</a>
     </div>
+
+    <div class="container mt-3">
 
         <!-- First Row -->
         <div class="row">
@@ -263,8 +296,12 @@
 
     <script src="shop.js"></script>
 
+    <footer class="footer">
+        &copy; 2023 My Online Shop
+    </footer>
+
+    <script src="shop.js"></script>
+
 </body>
-
-
 
 </html>
