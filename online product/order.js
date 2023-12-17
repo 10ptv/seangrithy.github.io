@@ -51,3 +51,6 @@ function submitOrder() {
     // For simplicity, you might want to redirect to the invoice page directly
     window.location.href = 'invoice.html';
 }
+
+
+

@@ -48,9 +48,6 @@ function displayInvoice() {
     if (thankYouMessageContainer) {
         thankYouMessageContainer.innerHTML = '<p>Thank you for your order!</p>';
     }
-
-    // Optional: Clear the customer information from localStorage after displaying it
-    localStorage.removeItem('customerInfo');
 }
 
 function downloadInvoice() {

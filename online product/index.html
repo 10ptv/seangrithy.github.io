@@ -1,116 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Online Shop</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-fhf9zINHya0eLWAdTEAw9t6O4x+ra1FzlY0By8VC4J4Qqi4PcLFN8DT25VUrT6e4Fs2qtD2+EWLZRi18BbcpJ6A==" crossorigin="anonymous" />
- 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-fhf9zINHya0eLWAdTEAw9t6O4x+ra1FzlY0By8VC4J4Qqi4PcLFN8DT25VUrT6e4Fs2qtD2+EWLZRi18BbcpJ6A=="
+        crossorigin="anonymous">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-T9a3Pr6uCuLZuVX02aSMWSbQJqAJlb3g/xP4COH/a9hqDBZ6XbvoB7Yyz5q3gc4Q" crossorigin="anonymous">
     <style>
         body {
-          font-family: 'Arial', sans-serif;
-          margin: 0;
-          padding: 0;
-          background-color: #f8f8f8;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
         }
-    
+
         header {
-          background-color: #333;
-          color: #fff;
-          padding: 10px;
-          text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
         }
-    
+
         main {
-          display: flex;
-          justify-content: space-around;
-          flex-wrap: wrap;
-          padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
         }
-    
-        .product, .cart-item {
-          background-color: #fff;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-          margin: 10px;
-          padding: 20px;
-          text-align: center;
-          border-radius: 8px;
+
+        .product,
+        .cart-item {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            transition: transform 0.2s;
         }
-    
+
+        .product:hover,
+        .cart-item:hover {
+            transform: scale(1.05);
+        }
+
+        .product img,
+        .cart-item img {
+            max-width: 100%;
+            max-height: 200px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
         .price {
-          font-weight: bold;
-          color: #007bff;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
         }
-    
-        .add-to-cart, .remove-from-cart {
-          background-color: #007bff;
-          color: #fff;
-          padding: 8px 16px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          transition: background-color 0.3s;
+
+        .add-to-cart,
+        .remove-from-cart {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-    
-        .add-to-cart:hover, .remove-from-cart:hover {
-          background-color: #0056b3;
+
+        .add-to-cart:hover,
+        .remove-from-cart:hover {
+            background-color: #0056b3;
         }
-    
-        .cart {
-          background-color: #fff;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-          padding: 20px;
-          border-radius: 8px;
+
+        .card-body {
+            padding: 0;
         }
-    
-        .cart-total {
-          margin-top: 20px;
-          text-align: right;
+
+        .card-title {
+            margin-bottom: 15px;
         }
-    
-        footer {
-          background-color: #333;
-          color: #fff;
-          padding: 10px;
-          text-align: center;
+
+        .card-text {
+            color: #555;
         }
-      </style>
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Custom class for bigger button */
+        .btn-bigger {
+            padding: 12px 24px;
+            font-size: 18px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
+
 <body>
 
-<div id="cartContainer">
-    <a href="cart.html" id="cartIcon"><i class="fas fa-shopping-cart"></i></a>
-    <div id="cartCount">0</div>
-    <button id="goToCartButton" onclick="goToCart()">Go to Cart</button>
-</div>
+    <div class="container mt-3 d-flex justify-content-center">
+        <!-- Center the content -->
+        <div id="cartContainer" class="d-flex justify-content-between align-items-center mb-3">
+            <a href="cart.html" id="cartIcon"><i class="fas fa-shopping-cart"></i></a>
+            <div id="cartCount" class="badge badge-primary">0</div>
+            <!-- Apply the custom class to the button -->
+            <button id="goToCartButton" onclick="goToCart()" class="btn btn-primary btn-bigger">Go to Cart</button>
+        </div>
+    </div>
 
-<div class="product" id="product1">
-    <h2>King size Bed</h2>
-    <img src="productsImage/bed bass ROOM.png" alt="Product 1 Image">
-    <p>ខ្នាត : 2m x 1.8m</p>
-    <p>Price: $350</p>
-    <button onclick="addToCart('Product 1', 355.99, 'This is a brief description of Product 1.')">Add to Cart</button>
-</div>
+        <!-- First Row -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 product">
+                    <img src="productsImage/bed bass ROOM.png" class="card-img-top" alt="Product 1 Image">
+                    <div class="card-body">
+                        <h5 class="card-title">King size Bed</h5>
+                        <p class="card-text">ខ្នាត : 2m x 1.8m</p>
+                        <p class="price">Price: $350</p>
+                        <button onclick="addToCart('Product 1', 355.99, 'This is a brief description of Product 1.')"
+                            class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
 
-<div class="product" id="product2">
-    <h2>Gamming Desk</h2>
-    <img src="productsImage/gaming desk.png" alt="Product 2 Image">
-    <p>ខ្នាត 1.5m x 0.6m x 1.5m </p>
-    <p>Price: $200</p>
-    <button onclick="addToCart('Product 2', 215.99, 'This is a brief description of Product 2.')">Add to Cart</button>
-</div>
+            <div class="col-md-4">
+                <div class="card mb-4 product">
+                    <img src="productsImage/gaming desk.png" class="card-img-top" alt="Product 2 Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Gaming Desk</h5>
+                        <p class="card-text">ខ្នាត 1.5m x 0.6m x 1.5m</p>
+                        <p class="price">Price: $200</p>
+                        <button onclick="addToCart('Product 2', 215.99, 'This is a brief description of Product 2.')"
+                            class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
 
-<div class="product" id="product3">
-    <h2>Desk for pc</h2>
-    <img src="productsImage/pc table1.png" alt="Product 3 Image">
-    <p>ខ្នាត 1.2m x 0.6m x 1.5m</p>
-    <p>Price: $155.99</p>
-    <button onclick="addToCart('Product 3', 155.99, 'This is a brief description of Product 3.')">Add to Cart</button>
-</div>
+            <div class="col-md-4">
+                <div class="card mb-4 product">
+                    <img src="productsImage/pc table1.png" class="card-img-top" alt="Product 3 Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Desk for PC</h5>
+                        <p class="card-text">ខ្នាត 1.2m x 0.6m x 1.5m</p>
+                        <p class="price">Price: $155.99</p>
+                        <button onclick="addToCart('Product 3', 155.99, 'This is a brief description of Product 3.')"
+                            class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<script src="shop.js"></script>
+        <!-- Second Row -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 product">
+                    <img src="productsImage/bed bass ROOM.png" class="card-img-top" alt="Product 4 Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Another Bed</h5>
+                        <p class="card-text">ខ្នាត : 2m x 1.8m</p>
+                        <p class="price">Price: $400</p>
+                        <button onclick="addToCart('Product 4', 400, 'This is a brief description of Product 4.')"
+                            class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4 product">
+                    <img src="productsImage/gaming desk.png" class="card-img-top" alt="Product 5 Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Gaming Chair</h5>
+                        <p class="card-text">ខ្នាត 1.2m x 0.8m x 1.5m</p>
+                        <p class="price">Price: $150</p>
+                        <button onclick="addToCart('Product 5', 150, 'This is a brief description of Product 5.')"
+                            class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4 product">
+                    <img src="productsImage/pc table1.png" class="card-img-top" alt="Product 6 Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Desk with Drawers</h5>
+                        <p class="card-text">ខ្នាត 1.5m x 0.6m x 1.2m</p>
+                        <p class="price">Price: $180</p>
+                        <button onclick="addToCart('Product 6', 180, 'This is a brief description of Product 6.')"
+                            class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Row -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 product">
+                    <img src="productsImage/bed bass ROOM.png" class="card-img-top" alt="Product 7 Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Luxury Bed</h5>
+                        <p class="card-text">ខ្នាត : 2m x 2m</p>
+                        <p class="price">Price: $500</p>
+                        <button onclick="addToCart('Product 7', 500, 'This is a brief description of Product 7.')"
+                            class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4 product">
+                    <img src="productsImage/gaming desk.png" class="card-img-top" alt="Product 8 Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Gaming Mouse</h5>
+                        <p class="card-text">Wireless Mouse</p>
+                        <p class="price">Price: $30</p>
+                        <button onclick="addToCart('Product 8', 30, 'This is a brief description of Product 8.')"
+                            class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4 product">
+                    <img src="productsImage/pc table1.png" class="card-img-top" alt="Product 9 Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Corner Desk</h5>
+                        <p class="card-text">ខ្នាត 1.2m x 1.2m</p>
+                        <p class="price">Price: $120</p>
+                        <button onclick="addToCart('Product 9', 120, 'This is a brief description of Product 9.')"
+                            class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="shop.js"></script>
 
 </body>
-<footer><i class="fas fa-copyright    ">Copyright @ <i class="fa fa-calendar" aria-hidden="true"></i></i></footer>
+
+
+
 </html>

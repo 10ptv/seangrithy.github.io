@@ -1,42 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Details</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        h2 {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        #orderDetails {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+        }
+
+        #orderTotalAmount,
+        #orderTotalPrice {
+            color: red; /* Text color: red */
+            font-weight: bold; /* Optional: Add bold font */
+            background-color: yellow; /* Background color: yellow */
+            padding: 5px 10px; /* Add padding for better appearance */
+            border-radius: 4px; /* Add border-radius for rounded corners */
+            display: inline-block; /* Ensure inline-block display for padding */
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 5px;
+            display: block;
+            text-align: left;
+            width: 100%;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745; /* Green background color */
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+    </style>
 </head>
+
 <body>
 
-<h2>Order Details</h2>
+    <h2>Order Details</h2>
 
-<div id="orderDetails">
-    <!-- Order details will be displayed here -->
-</div>
+    <div id="orderDetails">
+        <!-- Order details will be displayed here -->
+    </div>
 
-<h2>Total Amount: <span id="orderTotalAmount">0</span></h2>
-<h2>Total Price: $<span id="orderTotalPrice">0.00</span></h2>
+    <h2>Total Amount: <span id="orderTotalAmount">0</span></h2>
+    <h2>Total Price: $<span id="orderTotalPrice">0.00</span></h2>
 
-<form action="submit_order.php" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
+    <form id="orderForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
 
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone" required>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
 
-    
-</form>
-<!-- order.html -->
+        <!-- Add more form fields as needed -->
 
-<button onclick="submitOrder()">Submit Order</button>
-<!-- order.html -->
-<!-- Your HTML content here -->
+        <button type="button" onclick="submitOrder()">Submit Order</button>
+    </form>
 
-
-<script src="order.js"></script>
+    <script src="order.js"></script>
 </body>
-</html>
 
+</html>
