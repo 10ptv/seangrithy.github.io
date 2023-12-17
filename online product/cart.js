@@ -1,9 +1,7 @@
 // cart.js
 
 // Function to handle going back to the main shop page
-function goToShop() {
-    window.location.href = 'index.html';
-}
+
 
 // Function to initialize the cart content when the page loads
 function initCart() {
