@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Create a database connection
-    $con = new mysqli('localhost', 'root', '', 'loginform');
+    $con = new mysqli('sql12.freesqldatabase.com', 'sql12671198', 'HTeIXZJhFS', 'sql12671198');
 
     // Check for connection errors
     if ($con->connect_error) {
