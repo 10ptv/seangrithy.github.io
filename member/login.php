@@ -3,12 +3,18 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Define database connection parameters as constants
+define('DB_HOST', 'sql12.freesqldatabase.com');
+define('DB_USERNAME', 'sql12671198');
+define('DB_PASSWORD', 'HTeIXZJhFS');
+define('DB_DATABASE', 'sql12671198');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     // Create a database connection
-    $con = new mysqli('sql12.freesqldatabase.com', 'sql12671198', 'HTeIXZJhFS', 'sql12671198');
+    $con = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
     // Check for connection errors
     if ($con->connect_error) {
@@ -32,10 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (password_verify($password, $dbPassword)) {
                 // Password is correct, set the username in the session
                 $_SESSION['username'] = $dbUsername;
-                echo "Password is correct";
+                echo "Login successful";
 
-                // Redirect to the logged-in page
-                header('Location: login_process.php');
+                // Redirect to the logged-in page (adjust the URL accordingly)
+                header('Location: logged_in.php');
                 exit;
             } else {
                 // Incorrect password, handle failed login

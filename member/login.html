@@ -1,3 +1,13 @@
+<?php
+session_start(); // Start the session
+
+// Function to generate a CSRF token
+function generate_csrf_token() {
+    $token = bin2hex(random_bytes(32));
+    $_SESSION['csrf_token'] = $token;
+    return $token;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +30,5 @@
 
         <input type="submit" value="Login">
     </form>
-
-   
 </body>
 </html>

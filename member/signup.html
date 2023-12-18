@@ -8,17 +8,41 @@
 </head>
 <body>
     <h2>Sign Up Form</h2>
-    <form action="signup.php" method="post">
+    <form action="signup.php" method="post" onsubmit="return validateForm()">
         <label for="username">Username:</label>
         <input type="text" name="username" required><br>
 
         <label for="password">Password:</label>
-        <input type="password" name="password" required><br>
+        <input type="password" name="password" id="password" required><br>
 
         <label for="confirm_password">Confirm Password:</label>
-        <input type="password" name="confirm_password" required><br>
+        <input type="password" name="confirm_password" id="confirm_password" required><br>
+
+        <!-- Additional fields (customize as needed) -->
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
+
+        <label for="full_name">Full Name:</label>
+        <input type="text" name="full_name" required><br>
 
         <input type="submit" value="Sign Up">
     </form>
+
+    <script>
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            var confirm_password = document.getElementById("confirm_password").value;
+
+            // Check if passwords match
+            if (password !== confirm_password) {
+                alert("Passwords do not match");
+                return false;
+            }
+
+            // Additional client-side validation if needed
+
+            return true;
+        }
+    </script>
 </body>
 </html>

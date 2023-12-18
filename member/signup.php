@@ -1,5 +1,4 @@
 <?php
-// Start the session
 session_start();
 
 // Database connection parameters
@@ -18,16 +17,25 @@ if ($con->connect_error) {
 
 // Assuming you have received form data from POST method
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
     $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);  // Hash the password
+    $password = $_POST['password'];
+    $email = $_POST['email'];
+    $full_name = $_POST['full_name'];
+
+    // Perform server-side validation (add more as needed)
+    if (strlen($password) < 8) {
+        die("Password must be at least 8 characters long.");
+    }
+
+    // Hash the password for security
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Perform the signup operation
-    $sql = "INSERT INTO users (name, username, password) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO users (username, password, email, full_name) VALUES (?, ?, ?, ?)";
     $stmt = $con->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param('sss', $name, $username, $password);
+        $stmt->bind_param('ssss', $username, $hashed_password, $email, $full_name);
         $result = $stmt->execute();
 
         if ($result) {
