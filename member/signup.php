@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Database connection parameters
+// Your database connection parameters
 $host = 'sql12.freesqldatabase.com';
 $username = 'sql12671198';
 $password = 'HTeIXZJhFS';
@@ -15,22 +15,17 @@ if ($con->connect_error) {
     die('Connection failed: ' . $con->connect_error);
 }
 
-// Assuming you have received form data from POST method
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Collect user inputs from the form
     $username = $_POST['username'];
     $password = $_POST['password'];
     $email = $_POST['email'];
     $full_name = $_POST['full_name'];
 
-    // Perform server-side validation (add more as needed)
-    if (strlen($password) < 8) {
-        die("Password must be at least 8 characters long.");
-    }
-
     // Hash the password for security
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Perform the signup operation
+    // Insert user information into the database
     $sql = "INSERT INTO users (username, password, email, full_name) VALUES (?, ?, ?, ?)";
     $stmt = $con->prepare($sql);
 

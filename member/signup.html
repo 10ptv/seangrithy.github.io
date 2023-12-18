@@ -4,45 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Form</title>
-    <link rel="stylesheet" href="log.css">
 </head>
 <body>
     <h2>Sign Up Form</h2>
-    <form action="signup.php" method="post" onsubmit="return validateForm()">
+    <form action="signup.php" method="post">
         <label for="username">Username:</label>
-        <input type="text" name="username" required><br>
+        <input type="text" name="username" required>
 
         <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required><br>
+        <input type="password" name="password" required>
 
-        <label for="confirm_password">Confirm Password:</label>
-        <input type="password" name="confirm_password" id="confirm_password" required><br>
-
-        <!-- Additional fields (customize as needed) -->
         <label for="email">Email:</label>
-        <input type="email" name="email" required><br>
+        <input type="email" name="email" required>
 
         <label for="full_name">Full Name:</label>
-        <input type="text" name="full_name" required><br>
+        <input type="text" name="full_name" required>
 
         <input type="submit" value="Sign Up">
     </form>
-
-    <script>
-        function validateForm() {
-            var password = document.getElementById("password").value;
-            var confirm_password = document.getElementById("confirm_password").value;
-
-            // Check if passwords match
-            if (password !== confirm_password) {
-                alert("Passwords do not match");
-                return false;
-            }
-
-            // Additional client-side validation if needed
-
-            return true;
-        }
-    </script>
 </body>
 </html>
