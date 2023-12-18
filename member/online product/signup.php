@@ -1,22 +1,8 @@
 <?php
 session_start();
-
-// Your database connection parameters
-$host = 'sql12.freesqldatabase.com';
-$username = 'sql12671198';
-$password = 'HTeIXZJhFS';
-$database = 'sql12671198';
-
-// Create a database connection
-$con = new mysqli($host, $username, $password, $database);
-
-// Check for connection errors
-if ($con->connect_error) {
-    die('Connection failed: ' . $con->connect_error);
-}
+include('db.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Collect user inputs from the form
     $username = $_POST['username'];
     $password = $_POST['password'];
     $email = $_POST['email'];
