@@ -147,20 +147,7 @@
 
 <body>
 
-    <?php
-    // Start the session
-    session_start();
-
-    // Check if the user is logged in
-    if (isset($_SESSION['username'])) {
-        echo '<h1>Welcome, ' . $_SESSION['username'] . '!</h1>';
-        echo '<p>Your cart contents go here.</p>';
-    } else {
-        // If not logged in, redirect to the login page
-        header('Location: login.html');
-        exit();
-    }
-    ?>
+ 
     
     <div id="cartContainer">
         <a href="index.html" id="cartIcon"><i class="fas fa-shopping-cart"></i></a>

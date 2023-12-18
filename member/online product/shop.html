@@ -1,3 +1,23 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permission Example</title>
+</head>
+<body>
+
+    <div class="content">
+        <p>This is visible to all users.</p>
+    </div>
+
+ 
+
+</body>
+</html>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -155,19 +175,12 @@
             margin-top: 20px;
         }
     </style>
+    
+    
+</style>
 </head>
-
 <body>
 
-    <?php
-    // Check if the user is logged in (you should replace this with your authentication logic)
-    $userIsLoggedIn = true;
-    if ($userIsLoggedIn) {
-        echo '<div class="logged-in-only">';
-        echo '<p>This is visible only to logged-in users.</p>';
-        echo '</div>';
-    }
-    ?
     
     <div id="cartContainer">
         <a href="cart.html" id="cartIcon"><i class="fas fa-shopping-cart"></i></a>
@@ -308,13 +321,8 @@
     </footer>
 
     <script src="shop.js"></script>
-    <script>
-        // Check if the user is logged in and show/hide elements accordingly
-        var userIsLoggedIn = <?php echo json_encode($userIsLoggedIn); ?>;
-        if (userIsLoggedIn) {
-            document.querySelector('.logged-in-only').style.display = 'block';
-        }
-    </script>
+
+
 </body>
 
 </html>
