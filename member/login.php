@@ -3,32 +3,27 @@ session_start();
 include('db.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'];
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Retrieve hashed password from the database
-    $sql = "SELECT username, password FROM users WHERE username=?";
+    // Perform any additional validation or sanitization if needed
+
+    $sql = "INSERT INTO `login` (name, username, password) VALUES (?, ?, ?)";
     $stmt = $con->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param('s', $username);
+        // Use password_hash to securely store passwords
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt->bind_param('sss', $name, $username, $hashedPassword);
         $stmt->execute();
-        $stmt->store_result();
 
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($dbUsername, $dbPassword);
-            $stmt->fetch();
-
-            // Verify the entered password with the hashed password from the database
-            if (password_verify($password, $dbPassword)) {
-                // Password is correct, set the username in the session
-                $_SESSION['username'] = $dbUsername;
-                echo "Login successful";
-            } else {
-                echo "Incorrect password. Please try again.";
-            }
+        // Check if the insertion was successful
+        if ($stmt->affected_rows > 0) {
+            echo "Data inserted successfully";
         } else {
-            echo "Username not found. Please try again.";
+            echo "Error inserting data: " . $con->error;
         }
 
         $stmt->close();
@@ -37,6 +32,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Close the database connection
 $con->close();
 ?>
